@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>
+    {% if page == 'home' %}Student Management Home
+    {% elif page == 'form' %}Create Student
+    {% elif page == 'view' %}View Students
+    {% elif page == 'edit' %}Edit Student
+    {% endif %}
+  </title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  {% if page == 'home' %}
+    <h1>Welcome to the Student Management System</h1>
+    <button onclick="location.href='/form'">Add Student</button>
+    <button onclick="location.href='/view'">View Students</button>
+
+  {% elif page == 'form' %}
+    <h2>Add Student</h2>
+    <form method="POST" action="/create">
+      <input type="text" name="name" placeholder="Name" required><br>
+      <input type="text" name="address" placeholder="Address" required><br>
+      <input type="email" name="email" placeholder="Email" required><br><br>
+
+      <h4>Subject Info</h4>
+      <input type="text" name="subject_name" placeholder="Subject Name" required><br>
+      <input type="text" name="subject_author" placeholder="Subject Author" required><br>
+      <input type="text" name="subject_description" placeholder="Subject Description" required><br><br>
+
+      <button type="submit">Add Student</button>
+    </form>
+    <br>
+    <button onclick="location.href='/'">Back to Home</button>
+
+  {% elif page == 'view' %}
+    <h2>All Students</h2>
+    {% for student in students %}
+      <div class="student-card">
+        <p><strong>Name:</strong> {{ student.name }}</p>
+        <p><strong>Address:</strong> {{ student.address }}</p>
+        <p><strong>Email:</strong> {{ student.email }}</p>
+        <p><strong>Subject Name:</strong> {{ student.subjects.name }}</p>
+        <p><strong>Author:</strong> {{ student.subjects.author }}</p>
+        <p><strong>Description:</strong> {{ student.subjects.description }}</p>
+        <a href="/edit/{{ student._id }}">Edit</a> |
+        <a href="/delete/{{ student._id }}" onclick="return confirm('Are you sure?')">Delete</a>
+      </div>
+    {% endfor %}
+    <br>
+    <button onclick="location.href='/'">Back to Home</button>
+
+  {% elif page == 'edit' %}
+    <h2>Edit Student</h2>
+    <form method="POST" action="/update/{{ student._id }}">
+      <input type="text" name="name" value="{{ student.name }}" required><br>
+      <input type="text" name="address" value="{{ student.address }}" required><br>
+      <input type="email" name="email" value="{{ student.email }}" required><br><br>
+
+      <h4>Subject Info</h4>
+      <input type="text" name="subject_name" value="{{ student.subjects.name }}" required><br>
+      <input type="text" name="subject_author" value="{{ student.subjects.author }}" required><br>
+      <input type="text" name="subject_description" value="{{ student.subjects.description }}" required><br><br>
+
+      <button type="submit">Update Student</button>
+    </form>
+    <br>
+    <button onclick="location.href='/view'">Back to View</button>
+  
+  {% endif %}
+
+</body>
+</html>

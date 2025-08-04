@@ -1,0 +1,140 @@
+/* static/style.css */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  color: #212121;
+  text-align: center;
+  padding: 20px;
+  animation: fadeIn 1.2s ease-in;
+}
+
+h1, h2, h4 {
+  color: #e91e63;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  animation: popIn 0.8s ease-in;
+}
+
+form, .student-card {
+  background: linear-gradient(145deg, #ffffff, #f1f1f1);
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  padding: 25px;
+  margin: 25px auto;
+  width: 90%;
+  max-width: 520px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: slideUp 0.6s ease;
+}
+
+form:hover,
+.student-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 25px rgba(255, 105, 135, 0.3);
+}
+
+input {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 2px solid #ff4081;
+  outline: none;
+  background: #fff;
+  color: #333;
+  font-size: 16px;
+  transition: box-shadow 0.3s ease;
+}
+
+input:focus {
+  box-shadow: 0 0 10px #ff4081aa;
+  border-color: #e91e63;
+}
+
+input::placeholder {
+  color: #999;
+}
+
+button {
+  background: linear-gradient(145deg, #ff4081, #ff80ab);
+  color: #fff;
+  padding: 12px 24px;
+  margin: 12px;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+  box-shadow: 0 4px 12px rgba(255, 64, 129, 0.3);
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(145deg, #ff80ab, #ff4081);
+  transform: scale(1.08);
+  box-shadow: 0 6px 16px rgba(255, 64, 129, 0.5);
+}
+
+a {
+  color: #ff4081;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 6px;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+  color: #d81b60;
+  text-shadow: 0 0 8px #ff80ab;
+}
+
+.student-card {
+  text-align: left;
+  font-size: 16px;
+  background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  button, a {
+    display: none;
+  }
+
+  form, .student-card {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+}
